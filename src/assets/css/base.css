@@ -1,0 +1,15 @@
+* {
+  font-family: 'DM Sans', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+}
+.card {
+  border-radius: 12px;
+  padding: 1rem;
+  width: fit-content;
+  height: fit-content;
+}
+.card-title {
+  margin-bottom: 1rem;
+}
