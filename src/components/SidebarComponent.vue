@@ -1,6 +1,14 @@
 <script setup>
-import { ref } from 'vue'
-const location = ref(window.location.pathname);
+import { ref, watch } from 'vue'
+import { RouterLink, useRoute } from 'vue-router'
+
+const route = useRoute()
+const location = ref(route.path);
+
+watch(() => route.path,
+  () => {
+    location.value = route.path;
+  })
 
 function toggleMenu() {
   document.querySelector('#sidebar').classList.toggle('menu-active')
@@ -27,21 +35,30 @@ function toggleMenu() {
         </svg>
       </div>
     </div>
-    <div class="icon" :class="{ active: location === '/' }">
-      <svg width="26px" height="26px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M8.976 3C4.05476 3 3 4.05476 3 8.976V15.024C3 19.9452 4.05476 21 8.976 21H9V9H21V8.976C21 4.05476 19.9452 3 15.024 3H8.976Z"
-          fill="" />
-        <path
-          d="M3 8.976C3 4.05476 4.05476 3 8.976 3H15.024C19.9452 3 21 4.05476 21 8.976V15.024C21 19.9452 19.9452 21 15.024 21H8.976C4.05476 21 3 19.9452 3 15.024V8.976Z"
-          stroke="#ffffff" stroke-width="2" />
-        <path d="M21 9L3 9" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        <path d="M9 21L9 9" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
-      <p class="icon-text">Visão Geral</p>
-    </div>
-    <div class="config">
-      <div class="icon" :class="{ active: location === '/config' }">
+    <nav>
+      <RouterLink to="/" class="icon" :class="{ active: location == '/' }" title="Visão Geral">
+        <svg width="26px" height="26px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M8.976 3C4.05476 3 3 4.05476 3 8.976V15.024C3 19.9452 4.05476 21 8.976 21H9V9H21V8.976C21 4.05476 19.9452 3 15.024 3H8.976Z"
+            fill="" />
+          <path
+            d="M3 8.976C3 4.05476 4.05476 3 8.976 3H15.024C19.9452 3 21 4.05476 21 8.976V15.024C21 19.9452 19.9452 21 15.024 21H8.976C4.05476 21 3 19.9452 3 15.024V8.976Z"
+            stroke="#ffffff" stroke-width="2" />
+          <path d="M21 9L3 9" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M9 21L9 9" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <p class="icon-text">Visão Geral</p>
+      </RouterLink>
+      <RouterLink to="/stressed-rank" class="icon" :class="{ active: location == '/stressed-rank' }"
+        title="Rank de Stress">
+        <svg width="26px" height="26px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M10 6L21 6.00066M10 12L21 12.0007M10 18L21 18.0007M3 5L5 4V10M5 10H3M5 10H7M7 20H3L6.41274 17.0139C6.78593 16.6873 7 16.2156 7 15.7197C7 14.7699 6.23008 14 5.28033 14H5C4.06808 14 3.28503 14.6374 3.06301 15.5"
+            stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <p class="icon-text">Rank de Stress</p>
+      </RouterLink>
+      <RouterLink to="/config" class="icon" :class="{ active: location == '/config' }" title="Configuração">
         <svg width="26px" height="26px" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path clip-rule="evenodd"
             d="M14 20C17.3137 20 20 17.3137 20 14C20 10.6863 17.3137 8 14 8C10.6863 8 8 10.6863 8 14C8 17.3137 10.6863 20 14 20ZM18 14C18 16.2091 16.2091 18 14 18C11.7909 18 10 16.2091 10 14C10 11.7909 11.7909 10 14 10C16.2091 10 18 11.7909 18 14Z"
@@ -51,8 +68,8 @@ function toggleMenu() {
             fill="#ffffff" fill-rule="evenodd" />
         </svg>
         <p class="icon-text">Configurações</p>
-      </div>
-    </div>
+      </RouterLink>
+    </nav>
   </header>
 </template>
 <style scoped>

@@ -10,6 +10,14 @@
   width: fit-content;
   height: fit-content;
 }
-.card-title {
-  margin-bottom: 1rem;
+.main-view {
+  padding: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.main-title {
+  width: 100%;
+  margin: 0;
 }

@@ -8,6 +8,7 @@ const props = defineProps(['data', 'listTitle'])
     <table class="table table-hover table-bordered">
       <thead>
         <tr>
+          <th scope="col">Posição</th>
           <th scope="col">Batalhão</th>
           <th scope="col">Região</th>
           <th scope="col">Responsavel</th>
@@ -18,7 +19,8 @@ const props = defineProps(['data', 'listTitle'])
       </thead>
       <tbody>
         <tr v-for="(item, index) in props.data" :key="index">
-          <td scope="row">{{ item.name }}</td>
+          <td scope="row">{{ index + 1 }}</td>
+          <td>{{ item.name }}</td>
           <td>{{ item.region }}</td>
           <td>{{ item.responsable }}</td>
           <td>{{ item.numberAgents }}</td>
